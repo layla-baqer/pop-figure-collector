@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Pop Figures List</h1>
+
+{% for figure in popfigures %}
+  <div class="card">
+
+    <a href="/popfigures/{{ figure.id }}">
+
+      <div class="card-content">
+        <span class="card-title">{{ figure.character }}</span>
+        <p>Franchise: {{ figure.franchise }}</p>
+        <p>Category: {{ figure.category }}</p>
+        <!-- <p>Id: {{ figure.number }}</p> -->
+
+        {% if figure.feature != 'None' %}
+          <p>Feature: {{ figure.feature }}</p>
+        {% endif %}
+      </div>
+
+    </a>
+
+  </div>
+{% endfor %}
+
+{% endblock %}
