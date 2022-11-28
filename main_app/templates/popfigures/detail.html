@@ -14,6 +14,10 @@
         <p>Feature: {{ figure.feature }}</p>
       {% endif %}
   </div>
+  <div class="card-action">
+    <a href="/popfigures/{{ figure.id }}/update">Edit</a>
+    <a href="/popfigures/{{ figure.id }}/delete">Delete</a>
+  </div>
 </div>
 
 {% endblock %}

@@ -3,6 +3,8 @@ from django.http import HttpResponse
 
 from .models import PopFigure
 
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 # Create your views here.
 
 def home(request):
@@ -42,3 +44,19 @@ def pop_figures_detail(request, pop_figure_id):
   pop_figure = PopFigure.objects.get(id=pop_figure_id)
 
   return render(request, 'popfigures/detail.html', {'figure': pop_figure})
+
+#######################################
+
+class PopFigureCreate(CreateView):
+    model = PopFigure
+    fields = '__all__'
+    success_url = '/popfigures/'
+
+class PopFigureUpdate(UpdateView):
+    model = PopFigure
+    fields = '__all__'
+    success_url = '/popfigures/'
+
+class PopFigureDelete(DeleteView):
+    model = PopFigure
+    success_url = '/popfigures/'
