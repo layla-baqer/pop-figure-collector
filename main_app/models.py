@@ -16,6 +16,7 @@ class PopFigure(models.Model):
     category = models.CharField(max_length=100)
     feature = models.CharField(max_length=100)
     number = models.IntegerField()
+    image = models.CharField(max_length=800, default='image not available')
 
     def __str__(self):
         return self.character

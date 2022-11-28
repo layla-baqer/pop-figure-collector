@@ -26,3 +26,16 @@ nav .nav-wrapper {
 a {
   color: black;
 }
+
+.card .card-image img {
+  height: 200px;
+  width: 200px;
+  padding: 24px;
+}
+
+/* .card a > div {
+  display: inline-block;
+}
+.card-content {
+
+} */
