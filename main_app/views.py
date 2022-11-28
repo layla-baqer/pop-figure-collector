@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from .models import PopFigure
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+from .forms import EventForm
 
 # Create your views here.
 
@@ -43,7 +45,22 @@ def pop_figures_detail(request, pop_figure_id):
 
   pop_figure = PopFigure.objects.get(id=pop_figure_id)
 
-  return render(request, 'popfigures/detail.html', {'figure': pop_figure})
+  event_form = EventForm()
+
+  return render(request, 'popfigures/detail.html', {
+    'figure': pop_figure,
+    'event_form': event_form
+    })
+
+def add_event(request, pop_figure_id):
+    form = EventForm(request.POST)
+
+    if form.is_valid():
+        new_event = form.save(commit=False)
+        new_event.popfigure_id = pop_figure_id
+        new_event.save()
+    
+    return redirect('detail', pop_figure_id=pop_figure_id)
 
 #######################################
 

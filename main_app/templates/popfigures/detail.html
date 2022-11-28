@@ -3,21 +3,61 @@
 
 <h1>Pop Figure Details</h1>
 
-<div class="card">
-  <div class="card-content">
-  <span class="card-title">{{ figure.character }}</span>
-      <p>Franchise: {{ figure.franchise }}</p>
-      <p>Category: {{ figure.category }}</p>
-      <!-- <p>Id: {{ figure.number }}</p> -->
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+      <span class="card-title">{{ figure.character }}</span>
+          <p>Franchise: {{ figure.franchise }}</p>
+          <p>Category: {{ figure.category }}</p>
+          <!-- <p>Id: {{ figure.number }}</p> -->
 
-      {% if figure.feature != 'None' %}
-        <p>Feature: {{ figure.feature }}</p>
-      {% endif %}
+          {% if figure.feature != 'None' %}
+            <p>Feature: {{ figure.feature }}</p>
+          {% endif %}
+      </div>
+      <div class="card-action">
+        <a href="/popfigures/{{ figure.id }}/update">Edit</a>
+        <a href="/popfigures/{{ figure.id }}/delete">Delete</a>
+      </div>
+    </div>
   </div>
-  <div class="card-action">
-    <a href="/popfigures/{{ figure.id }}/update">Edit</a>
-    <a href="/popfigures/{{ figure.id }}/delete">Delete</a>
+  <div class="col s6">
+
+    <form method="post" action="{% url 'add_event' figure.id %}">
+      {% csrf_token %}
+      {{ event_form.as_p }}
+      <input type="submit" class="btn" value="Add Event">
+    </form>
+
+    <table class="striped">
+      <thead>
+        <tr><th>Date</th><th>Location</th></tr>
+      </thead>
+      <tbody>
+        {% for event in figure.event_set.all %}
+          <tr>
+            <td>{{event.date}}</td>
+            <td>{{event.get_location_display}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
+
+<script>
+  var dateEl = document.getElementById('id_date');
+  M.Datepicker.init(dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+
+  var selectEl = document.getElementById('id_location');
+  M.FormSelect.init(selectEl);
+
+</script>
 
 {% endblock %}
