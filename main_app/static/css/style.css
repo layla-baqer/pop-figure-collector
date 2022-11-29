@@ -21,6 +21,11 @@ nav .nav-wrapper {
 
 .card {
   background-color: white;
+  /* height: 200px; */
+}
+.card .card-content {
+  position: absolute;
+  top: 30px;
 }
 
 a {
@@ -33,9 +38,6 @@ a {
   padding: 24px;
 }
 
-/* .card a > div {
+.card-align div {
   display: inline-block;
 }
-.card-content {
-
-} */

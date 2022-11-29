@@ -7,20 +7,24 @@
   <div class="col s6">
     <div class="card">
 
-      <div class="card-image">
-        <img src={{ figure.image }} />
-      </div>
+      <div class="card-align">
 
-      <div class="card-content">
-      <span class="card-title">{{ figure.character }}</span>
-          <p>Franchise: {{ figure.franchise }}</p>
-          <p>Category: {{ figure.category }}</p>
-          <!-- <p>Id: {{ figure.number }}</p> -->
+        <div class="card-image">
+          <img src={{ figure.image }} />
+        </div>
 
-          {% if figure.feature != 'None' %}
-            <p>Feature: {{ figure.feature }}</p>
-          {% endif %}
+        <div class="card-content">
+        <span class="card-title">{{ figure.character }}</span>
+            <p>Franchise: {{ figure.franchise }}</p>
+            <p>Category: {{ figure.category }}</p>
+            <!-- <p>Id: {{ figure.number }}</p> -->
+
+            {% if figure.feature != 'None' %}
+              <p>Feature: {{ figure.feature }}</p>
+            {% endif %}
+        </div>
       </div>
+      
       <div class="card-action">
         <a href="/popfigures/{{ figure.id }}/update">Edit</a>
         <a href="/popfigures/{{ figure.id }}/delete">Delete</a>
